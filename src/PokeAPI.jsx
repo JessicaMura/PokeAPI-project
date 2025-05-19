@@ -71,7 +71,7 @@ export default function PokeAPI() {
   const [id, setId] = useState(null);
   const [height, setHeight] = useState(null);
 
-  const maxId = 1010; // puoi cambiarlo a 151 per solo i Pokémon originali
+  const maxId = 1010; 
 
   useEffect(() => {
     async function getData() {
@@ -81,6 +81,7 @@ export default function PokeAPI() {
         setType(res.data.types.map((t) => t.type.name).join(", "));
         setId(res.data.id);
         setHeight(res.data.height);
+        setName(res.data.name);
       } catch (error) {
         console.error("Pokémon non trovato", error);
         setImg("");
@@ -124,7 +125,7 @@ export default function PokeAPI() {
         {img && <img src={img} alt={find} />}
         <h1>N° Pokemon: {id ?? "?"}</h1>
         <h2>Altezza: {height ?? "?"}</h2>
-        <div className="name">{find.toUpperCase()}</div>
+        <div className="name">Name: {name}</div>
         <div className="type">Tipo: {type}</div>
         <input
           type="text"
